@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+
+<div class="content_book">
+    <div class="left_bar">
+        {% if genre_selected == 0 %}
+            <br class="selected">Все жанры </br>
+        {% else %}
+            <a href="{% url 'book' %}" class="genrelink">Все жанры </a>
+        {% endif %}
+         {% for genre in genres %}
+            {% if genre.pk == genre_selected %}
+                <br class="selected">{{ genre.genrename }} </br>
+            {% else %}
+                <a href="{{ genre.get_absolute_url }}" class="genrelink">{{ genre.genrename }} </a>
+           {% endif %}
+         {% endfor %}
+
+    </div>
+    <div class="right_bar">
+        {% block section %}
+
+        {% endblock %}
+
+    </div>
+</div>
+
+{% endblock %}

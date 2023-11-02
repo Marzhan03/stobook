@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Miracle</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/static/css/login.css">
+
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<!--header nav-->
+			<div class="header-nav">
+                <img class="logo_png" src="{% static 'img/logo.png' %}">
+
+				<nav id="nav" class="nav">
+					<ul class="nav-list">
+						{% comment %} {% for m in menu %}
+							<li class="nav-item"><a href="{% url m.url_name %}" class="nav-link">{{ m.title }}</a></li>
+						{% endfor %} {% endcomment %}
+						<li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Главная</a></li>
+						<li class="nav-item"><a href="{% url 'book' %}" class="nav-link">Книги</a></li>
+
+						<li class="nav-item">
+							{% if request.user.is_authenticated %}
+								<li class="nav-item"><a href="{% url 'order' %}" class="nav-link">Заказы</a></li>
+								<a href="/account/logout" class="nav-link">Выйти</a>
+
+							{% else %}
+								<a href="{% url 'login' %}" class="nav-link">Войти</a>
+							{% endif %}
+						
+						</li>
+					</ul>
+
+				</nav>
+			</div>
+		</div>
+	</div>
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

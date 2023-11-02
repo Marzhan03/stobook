@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<div class="header-content">
+         <img class="head_img" src="{% static '/img/headi.jpg' %}">
+		<div class="container">
+				<div class="header-title">
+					<h1 class="header-heading">Miracle
+					<br><span>Books for all ages</span></h1>
+				</div>
+		</div>
+	</div>
+	<section class="menu" id="menu">
+		<div class="container">
+            <h1 class="menu-title">  <span>Лидеры продаж</span> </h1>
+
+             {% for book in books %}
+                        {% if book.id <= 745 %}
+                            <div class="box-container">
+
+                                <div class="box">
+                                    <img src="{{ book.bookimg }}">
+                                    <div class="booktitle"> {{ book.bookname }}</div>
+
+
+                                    <a  href="{{ book.get_absolute_url }}" class="btn">Узнать больше</a>
+                                 </div>
+                            </div>
+                        {% endif %}
+            {% endfor %}
+
+        </div>
+
+
+</section>
+<section class="footer">
+	<div class="container">
+
+    <div class="share">
+        <a href="https://www.youtube.com/channel/UCzfGCktdeybfH4v12QcpHRg" class="fab fa-instagram"></a>
+        <a href="https://www.youtube.com/channel/UCzfGCktdeybfH4v12QcpHRg" class="fab fa-pinterest"></a>
+        <a href="https://www.youtube.com/channel/UCzfGCktdeybfH4v12QcpHRg" class="fab fa-whatsapp"></a>
+    </div>
+</div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'book/index.html' %}
+
+{% load static %}
+ {% block section %}
+<link rel="stylesheet" type="text/css" href="/static/css/book.css">
+
+    {% for book in books %}
+
+        <div class="rightbar_content">
+            <div class="book-img-content">
+                <div class="book-img"><img src="{{ book.bookimg }}"> </div>
+            </div>
+            <div class="info-content">
+                <div class="bookname">
+                    <br><h2>{{ book.bookname }}</h2>
+                </div>
+                <div class="info">
+                   Автор:{{ book.author }}
+
+                </div>
+                <div class="info">
+                    Страницы: {{ book.number_of_pages }}
+                </div>
+                <div class="info">
+                    Цена: {{ book.cost }}тг
+                </div>
+            </div>
+        </div>
+
+            <div class="description"><p>{{ book.description|linebreaks|truncatewords:50 }} </p></div>
+
+            <a class="post_btn" href="{{ book.get_absolute_url }}">Узнать больше</a>
+
+
+
+    {% endfor %}
+{% endblock %}
+
