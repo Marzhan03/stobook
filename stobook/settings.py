@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # осы жерде rest_framework-ті көрсетеміз
+    'rest_framework',
     'book',
     'account',
     'base',
@@ -86,7 +89,7 @@ WSGI_APPLICATION = 'stobook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':env('DATABASE_NAME'),
+        'NAME': "stobook",
         'USER':env('DATABASE_USER'),
         'PASSWORD':env('DATABASE_PASS'),
         'HOST':env('DATABASE_HOST'),

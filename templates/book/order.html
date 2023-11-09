@@ -1,9 +1,21 @@
-{% extends 'book/index.html' %}
+{% extends 'base/base.html' %}
 
 {% load static %}
- {% block section %}
+ {% block content %}
+    <h2>Оформление заказа</h2>
+    <div class="register_container">
+        <div class="register_inputs_list">
+            <select>
+                <option selected disabled>Выберите тип карты</option>
 
-asfaffsca
-<h2> {{ cat }}</h2>
+                {% comment %} {% for card_type in card_types %} {% endcomment %}
+                    <option value="{{ card_type.id }}">{{ card_type.cardtypename }}</option>
+                {% comment %} {% endfor %} {% endcomment %}
+            </select>
+
+            <button id="orderBtn" class="btn_cart">Оформить заказ</button>
+        </div>
+    </div>
+
+    <script src="/static/js/order.js"></script>
 {% endblock %}
-

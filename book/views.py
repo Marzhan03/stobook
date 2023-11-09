@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Book,Genre
+from .models import Book,Genre, Cardtype
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import CardTypeSerializer
+
 
 # Create your views here.
 def main(request):
@@ -45,7 +49,17 @@ def posts(request,post_id):
 def basket(request):
     return render(request, 'book/cart.html')
 
-
-
 def order(request):
-    return render(request,'book/order.html',{'title':"Order",} )
+    return render(request,'book/order.html', context={
+        'title': "Order",
+    })
+
+
+# декоратор
+@api_view(['GET', 'POST'])
+def get_card_types(request):
+    card_types = Cardtype.objects.all()
+
+    serializer = CardTypeSerializer(card_types, many=True)
+
+    return Response(serializer.data)

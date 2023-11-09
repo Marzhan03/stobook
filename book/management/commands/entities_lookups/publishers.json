@@ -1,0 +1,22 @@
+{
+    "publishers": [
+        {
+            "name": "MIT Press"
+        },
+        {
+            "name": "Атамұра"
+        },
+        {
+            "name": "Cambridge Univ Press"
+        },
+        {
+            "name": "БХВ Петербург"
+        },
+        {
+            "name": "Росмэн"
+        },
+        {
+            "name": "Мектеп"
+        }
+    ]
+}
