@@ -1,56 +1,44 @@
 @import './main.css';
 
 .rightbar_content{
+    width: 300px;
     display:grid;
-    grid-template-columns: 0.7fr 2fr;
-}
-.book-img-content{
-    margin:20px;
-}
-.book-img{
-    width:250px;
-}
-.info-content{
-    font-weight:100px;
+    display:inline-flex;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding:20px;
+    height: 450px;
+    text-align: center;
+    box-shadow: 2px 2px 2px 2px;
 
 
 }
-.bookname{
-     font-size:20px;
-    margin-bottom:20px;
 
-}
-.info{
-    font-size:20px;
-    margin-bottom:15px;
-}
-.description{
-    margin-left:20px;
-     margin-right:40px;
 
+.rightbar_content img{
+    width: 150px;
+    height:200px;
 }
-.post_btn{
-    margin: 10px 40px 40px 20px;
+
+
+.btn_post{
+    margin-top: 10px;
     display: inline-block;
-    font-size: 20px;
+    font-size: 14px;
     color:white;
     background:#664229;
     cursor: pointer;
-    padding: 10px;
-    right:-20px;
-    border-radius:10%;
-    justify-content:end;
-    align-items:flex-end;
+    padding: 10px
+
 
 }
-.container{
-    max-width:1200px ;
-}
-.post_btn:hover{
-    letter-spacing: .2rem;
-    color: black;
-}
-.post-content{
-    display:grid;
-    grid-template-columns: 0.7fr 2fr;
+.btn_cart{
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+    color:white;
+    background:#664229;
+    cursor: pointer;
+    padding: 10px
+
 }

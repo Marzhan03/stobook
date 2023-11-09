@@ -32,7 +32,7 @@ body{
 	display: flex;
 	align-items: flex-end;
 	column-gap: 50px;
-	padding-bottom: 13px;
+	padding-bottom: 17px;
 	font-size: 14px;
 }
 
@@ -51,7 +51,11 @@ body{
 .nav-link:hover{
 	color: #06038D;
 }
-
+.cart{
+	max-width: 35px;
+	align-items: center;
+	margin-top: 10px;
+}
 /*Header content*/
 .header-content{
 	position:relative;
@@ -95,14 +99,7 @@ body{
     width:430px;
     height:300px;
     display:inline-block;
-    /*display:grid;*/
-   /*grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));*/
-    /*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap:10px;*/
-  /*   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 2vw;
-  */
-
+   
 }
 
 .box{

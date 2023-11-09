@@ -42,6 +42,9 @@ def posts(request,post_id):
     }
     return render(request, 'book/post.html', context)
 
+def basket(request):
+    return render(request, 'book/cart.html')
+
 
 
 def order(request):
