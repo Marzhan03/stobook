@@ -1,0 +1,166 @@
+@import './reset.css';
+@import './media.css';
+@import './main.js';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+	--max-width:1450px;
+}
+
+body{
+	font-family: 'Poppins', sans-serif;
+	color: #000;
+}
+
+.container{
+	max-width: var(--max-width);
+	padding: 0 30px;
+	margin: 0 auto;/*отступы сверху снизу 0 влево вправо авто*/
+}
+
+/*Header*/
+.header{
+	background-color: #664229;
+}
+
+.header-nav{
+	display: flex; /* v odin ryd*/
+	justify-content: space-between; /* элементы в разные стороны*/
+	align-items: flex-end; /*выравнивание концами*/
+}
+.nav-list{
+	display: flex;
+	align-items: flex-end;
+	column-gap: 50px;
+	padding-bottom: 17px;
+	font-size: 14px;
+}
+
+.logo_png{
+	height: 50px;
+}
+
+.nav-link {
+	color: white;
+}
+
+.nav-link:active{
+	color: #808080;
+}
+
+.nav-link:hover{
+	color: #06038D;
+}
+.cart{
+	max-width: 35px;
+	align-items: center;
+	margin-top: 10px;
+}
+/*Header content*/
+.header-content{
+	position:relative;
+}
+
+.head_img{
+	height:600px;
+	width:100%;
+}
+
+.header-title{
+    align-items:center;
+    top:0;
+	position:absolute;
+	text-align: center;
+	font-weight: 600;
+	font-size: 60px;
+	margin-bottom: 0px;
+	padding: 180px 450px;
+	color:#FFF ;
+}
+.header-content p{
+	line-height: 2;
+}
+
+/*Menu*/
+.menu{
+    padding-bottom:40px;
+	margin: 0;
+	background-color: #f2e8c9;
+}
+
+.menu-title{
+	color:black;
+	font-size: 36px;
+	text-align: center;
+}
+
+.box-container{
+    margin-right:20px;
+    width:430px;
+    height:300px;
+    display:inline-block;
+   
+}
+
+.box{
+    padding:20px;
+    text-align: center;
+    border:var(--border);
+}
+.box:hover{
+	box-shadow: 2px 2px 2px 2px;
+}
+
+.box img{
+    width: 150px;
+    height:200px;
+}
+
+.boxtitle{
+    width:20px;
+    height:30px;
+    color: black;
+
+    padding:10px 0;
+}
+
+.box:hover{
+    background:#fff;
+}
+
+.btn{
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+    color:white;
+    background:#664229;
+    cursor: pointer;
+    padding: 10px
+}
+
+.btn:hover{
+    letter-spacing: .2rem;
+    color: black;
+}
+
+/*Footer*/
+.footer{
+    background:#664229;
+    text-align: center;
+}
+
+.share{
+    padding:16px 0;
+}
+
+.share a{
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    font-size: 32px;
+    color:#fff;
+}
+
+.box-content{
+
+}

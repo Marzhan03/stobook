@@ -1,0 +1,30 @@
+{% extends 'book/index.html' %}
+
+{% load static %}
+ {% block section %}
+<link rel="stylesheet" type="text/css" href="/static/css/book.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {% for book in books %}
+        <div class="rightbar_content">
+            <div class="box-book book-section-{{ book.id }}">
+                <img class="biikimg"src="{{ book.bookimg }}">
+                <div class="booktitle"> {{ book.bookname }}</div>
+                <div class="bookcost">Цена: {{ book.cost }}тг</div>
+
+
+                <a href="{{ book.get_absolute_url }}" class="btn_post">Узнать больше</a>
+                <a href="#" class="btn_cart" data-book-id="{{ book.id }}">Добавить в корзину</a>
+            </div>
+        </div>
+
+    
+
+
+
+    {% endfor %}
+    
+    <script src="{% static '/js/p.js' %}"></script>
+
+{% endblock %}
+

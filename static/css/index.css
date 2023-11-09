@@ -1,0 +1,44 @@
+
+.content_book{
+    width:auto;
+    background-color:#664229;
+    margin:0;
+    display:flex;
+
+}
+.left_bar{
+
+    margin-left:40px;
+    width:400px;
+    min-height:1200px;
+    padding:40px 40px;
+    display: flex;
+    flex-direction: column;
+}
+.genrelink{
+    font-size:18px;
+    margin-bottom:10px;
+    color:white;
+}
+
+
+.genrelink:hover{
+	color: #06038D;
+}
+
+.selected{
+    margin-top:-30px;
+    color:black important!;
+    font-size:24px;
+
+}
+
+.right_bar{
+    background-color:#fafafa;
+    width:1500px;
+    height:auto;
+    padding:60px 60px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 10px;
+
+}
