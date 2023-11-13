@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Book,Genre, Cardtype
+from .models import Book,Genre, Cardtype, City, Street
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import CardTypeSerializer
+from .serializers import CardTypeSerializer, CitySerializer, StreetSerializer
 
 
 # Create your views here.
@@ -56,10 +56,28 @@ def order(request):
 
 
 # декоратор
-@api_view(['GET', 'POST'])
+@api_view(['GET',])
 def get_card_types(request):
     card_types = Cardtype.objects.all()
 
     serializer = CardTypeSerializer(card_types, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['GET',])
+def get_cities(request):
+    cities = City.objects.all()
+
+    serializer = CitySerializer(cities, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['GET',])
+def get_streets_by_city(request, city_id):
+
+    # cities = City.objects.all()
+    streets = Street.objects.filter(city_id=city_id)
+
+    serializer = StreetSerializer(streets, many=True)
 
     return Response(serializer.data)

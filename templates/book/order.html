@@ -5,12 +5,16 @@
     <h2>Оформление заказа</h2>
     <div class="register_container">
         <div class="register_inputs_list">
-            <select>
+            <select id="cardTypes">
                 <option selected disabled>Выберите тип карты</option>
+            </select>
 
-                {% comment %} {% for card_type in card_types %} {% endcomment %}
-                    <option value="{{ card_type.id }}">{{ card_type.cardtypename }}</option>
-                {% comment %} {% endfor %} {% endcomment %}
+            <select id="cities">
+                <option selected disabled>Выберите город</option>
+            </select>
+
+            <select id="streets">
+                <option selected disabled>Выберите улицу</option>
             </select>
 
             <button id="orderBtn" class="btn_cart">Оформить заказ</button>

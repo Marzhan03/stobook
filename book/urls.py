@@ -12,4 +12,6 @@ urlpatterns = [
     path('post/<int:post_id>/',posts,name='post'),
     path('order',order,name='order'),
     path('card_types', get_card_types),
+    path('cities', get_cities),
+    path('streets/<int:city_id>', get_streets_by_city),
 ]

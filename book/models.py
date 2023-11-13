@@ -45,13 +45,12 @@ class City(models.Model):
 
 
 class Street(models.Model):
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='Город', null=True)
     street=models.CharField(max_length=255)
     def __str__(self):
         return self.street
 
-
 class Address(models.Model):
-    cityname=models.ForeignKey("City",on_delete=models.PROTECT)
     streetname=models.ForeignKey("Street",on_delete=models.PROTECT)
     housenumber=models.IntegerField()
     flatnumber=models.IntegerField()
