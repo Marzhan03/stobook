@@ -39,20 +39,20 @@ class Book(models.Model):
 
 
 class City(models.Model):
-    city=models.CharField(max_length=255)
+    city=models.CharField(max_length=255,null=True)
     def __str__(self):
         return self.city
 
 
 class Street(models.Model):
-    street=models.CharField(max_length=255)
+    city=models.ForeignKey("City", verbose_name=("Город"), on_delete=models.CASCADE,null=True)
+    street=models.CharField(max_length=255,null=True)
     def __str__(self):
         return self.street
 
 
 class Address(models.Model):
-    cityname=models.ForeignKey("City",on_delete=models.PROTECT)
-    streetname=models.ForeignKey("Street",on_delete=models.PROTECT)
+    streetname=models.ForeignKey("Street",on_delete=models.PROTECT,null=True)
     housenumber=models.IntegerField()
     flatnumber=models.IntegerField()
 

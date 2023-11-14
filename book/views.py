@@ -4,6 +4,7 @@ from .models import Book,Genre
 
 # Create your views here.
 def main(request):
+    
     books = Book.objects.filter(genre_id = 16)
     content={
         'title': "Main",
@@ -13,7 +14,11 @@ def main(request):
     return render(request,'book/main.html',content,)
 
 def book(request):
-    books = Book.objects.all()
+    search_query=request.GET.get('search','')
+    if search_query:
+        books = Book.objects.filter(bookname__icontains=search_query)
+    else:
+        books = Book.objects.all()
     genres=Genre.objects.all()
     context={
         'title': "Books",

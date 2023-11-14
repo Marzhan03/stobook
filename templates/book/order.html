@@ -1,9 +1,21 @@
-{% extends 'book/index.html' %}
+{% extends 'base/base.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="./static/css/login.css">
+<script src="/static/js/order.js"></script>
 
-{% load static %}
- {% block section %}
+<form method="POST" id="loginForm" action="/account/login">
+<div class="login_container">
+    <div class="login_content">
+        <div class="login_box">
+            <input class="login_input" type="text" name="username" placeholder="Ваш логин">
+            <input class="login_input" type="password" name="password" placeholder="Пароль">
+        </div>
+        <div class="login_button">
+            <input class="login_register_btn" type="submit" value="Войти">
 
-asfaffsca
-<h2> {{ cat }}</h2>
+            <a class="login_register_btn" href="/account/register">Регистрация</a>
+        </div>
+    </div>
+</div>
+</form>
 {% endblock %}
-

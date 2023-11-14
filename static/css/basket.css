@@ -21,7 +21,7 @@
 
 }
 .basket-items-container{
-   
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
     background-color: #f5f5f5;
 }
 .basket-items-title{
@@ -42,7 +42,7 @@
     padding-top: 10px;
     align-items: center;
     background-color: white;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 }
 .basket-item div{
     text-align: center;
@@ -50,6 +50,7 @@
 }
 .basket-img{
     width: 100px;
+    padding-bottom: 20px;
 }
 .items-counter-wrapper{
     margin: 0 30px;
@@ -90,4 +91,9 @@
 .backet-buttons{
     display: flex;
     justify-content: flex-end;
+}
+.empty{
+    align-items: center;
+    display: grid;
+    grid-template-columns: 4fr ;
 }

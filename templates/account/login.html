@@ -3,10 +3,18 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="./static/css/login.css">
-    <form method="POST" action="/account/login">
-        {% csrf_token %}
-        <div class="login_container">
+<script src="/static/js/login.js"></script>
 
+    <form method="POST" id="loginForm" action="/account/login">
+        {% csrf_token %}
+        {% for field, error in form.errors.items %}
+            {{ error }}
+        {% endfor %}
+
+        {% if errors %}
+            {{ errors }}
+        {% endif %}
+        <div class="login_container">
             <div class="login_content">
                 <div class="login_box">
                     <input class="login_input" type="text" name="username" placeholder="Ваш логин">

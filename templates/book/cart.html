@@ -2,11 +2,14 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="/static/css/basket.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <div class="container">
     <div class="basket-content">
         <div class="basket-title">
             <h2>Корзина</h2>
-            <input class="delete-all" type="button" value="Очистить">
+            <input class="delete-all" id="delete-all-items" type="button" value="Очистить">
         </div>
         <div class="basket-items-container">
             <div class="basket-items-title">
@@ -17,26 +20,21 @@
                 <div><h3>Сумма</h3></div>
                 <div><h3>  </h3></div>
             </div>
-            <div class="basket-item">
-                <div><img class="basket-img" src="{% static 'img/logo.png' %}"></div>
-                <div><h4>dsffsd</h4></div>
-                <div><h4>dsffsd</h4></div>
-                <div class="items-counter-wrapper">
-                    <div class="items__control" data-action="minus">-</div>
-                    <div class="items__current" data-counter>1</div>
-                    <div class="items__control" data-action="plus">+</div>
-                </div>
-                <div><h4>dsffsd</h4></div>
-                <input class="delete-all" type="button" value="Очистить">
-            </div>            
+            <div class="item">
+            <div class="basket-item ">
+             
+                
+            </div>    
+        </div>        
         </div>
         <div class="basket-sum">
-            <div><h3>Итоговая сумма:</h3></div>
-            <div><h3>545654</h3></div>
+            
         </div>
         <div class="backet-buttons">
-            <input class="delete-all" type="button" value="Очистить">
-            <input class="delete-all" type="button" value="Очистить">
+          
+            <a href="{% url 'book' %}" class="delete_all" >Вернуться назад</a>
+            <a href="{% url 'order' %}" class="delete-all" >Заказать</a>
+          
         </div>
     </div>
 </div>
