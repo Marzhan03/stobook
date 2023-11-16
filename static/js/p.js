@@ -7,7 +7,6 @@ $(document).ready(function() {
         let bookName = bookContainer.find(".booktitle").text()
         let bookImage = bookContainer.find(".bookimg").attr('src')
         let bookCost = bookContainer.find(".bookcost").attr('data-cost')
-     
         let cartItems = JSON.parse(localStorage.getItem("cartItems"))
        
         if (cartItems !== null){
@@ -46,6 +45,17 @@ $(document).ready(function() {
                 }
             ]))
         }
+    
+        let totalsum = JSON.parse(localStorage.getItem("totalsum")) 
+     
+        if (totalsum === null){
+            localStorage.setItem("totalsum", JSON.stringify(
+                {
+                    "allsum": 0,
+                }
+            ))
+        }
+
 
     })
 })

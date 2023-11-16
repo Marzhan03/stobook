@@ -7,13 +7,10 @@
 
     <form method="POST" id="loginForm" action="/account/login">
         {% csrf_token %}
-        {% for field, error in form.errors.items %}
-            {{ error }}
-        {% endfor %}
-
-        {% if errors %}
-            {{ errors }}
-        {% endif %}
+            {% for field, error in form.errors.items %}
+                {{ error }}
+            {% endfor %}
+       
         <div class="login_container">
             <div class="login_content">
                 <div class="login_box">

@@ -8,7 +8,7 @@
     {% for book in books %}
     <div class="rightbar_content">
         <div class="box-book book-section-{{ book.id }}">
-            <img class="bookimg" src="/media/{{ book.bookimg }}">
+            <img class="bookimg" src="{{ book.bookimg }}">
             <div class="booktitle">{{ book.bookname }}</div>
             <div class="bookcost" data-cost="{{ book.cost }}">Цена: {{ book.cost }}тг</div>
 

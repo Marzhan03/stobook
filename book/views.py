@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Book,Genre
+from .models import Book,Genre,City,Street
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import CitySerializer, StreetSerializer
 
 # Create your views here.
 def main(request):
@@ -53,4 +57,40 @@ def basket(request):
 
 
 def order(request):
-    return render(request,'book/order.html',{'title':"Order",} )
+    cities = City.objects.all()
+    return render(request,'book/order.html',{'cities':cities,} )
+
+# def load_streets(request):
+#     city_id = request.GET.get('city_id')
+#     streets = Street.objects.filter(city_id=city_id)
+#     streets_data = [{'id': street.id, 'name': street.street} for street in streets]
+#     return JsonResponse({'streets': streets_data})    
+
+# декоратор
+# @api_view(['GET',])
+# def get_card_types(request):
+#     card_types = Cardtype.objects.all()
+#     serializer = CardTypeSerializer(card_types, many=True)
+#     return Response(serializer.data)
+
+@api_view(['GET',])
+def get_cities(request):
+    cities = City.objects.all()
+
+    serializer = CitySerializer(cities, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['GET',])
+def get_streets_by_city(request, city_id):
+
+    # cities = City.objects.all()
+    streets = Street.objects.filter(city_id=city_id)
+
+    serializer = StreetSerializer(streets, many=True)
+
+    return Response(serializer.data)
+
+
+
+

@@ -27,10 +27,10 @@
 						{% endfor %} {% endcomment %}
 						<li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Главная</a></li>
 						<li class="nav-item"><a href="{% url 'book' %}" class="nav-link">Книги</a></li>
-					
+						<li class="nav-item"><a href="{% url 'order' %}" class="nav-link">Заказы</a></li>
 						<li class="nav-item">
 							{% if request.user.is_authenticated %}
-								<li class="nav-item"><a href="{% url 'order' %}" class="nav-link">Заказы</a></li>
+								
 								<a href="/account/logout" class="nav-link">Выйти</a>
 
 							{% else %}
