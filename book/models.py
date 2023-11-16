@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from account import models as account_models
 
 # Create your models here.
 
@@ -32,6 +32,7 @@ class Book(models.Model):
     number_of_pages=models.IntegerField()
     cost=models.IntegerField(null=True)
     description=models.TextField()
+    books = models.ManyToManyField("Book", through="OrderBook")
     def __str__(self):
         return self.bookname
     def get_absolute_url(self):
@@ -39,50 +40,39 @@ class Book(models.Model):
 
 
 class City(models.Model):
-    city=models.CharField(max_length=255)
+    city=models.CharField(max_length=255,null=True)
     def __str__(self):
         return self.city
 
 
 class Street(models.Model):
-    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='Город', null=True)
-    street=models.CharField(max_length=255)
+    city=models.ForeignKey("City", verbose_name=("Город"), on_delete=models.CASCADE,null=True)
+    street=models.CharField(max_length=255,null=True)
     def __str__(self):
         return self.street
 
 class Address(models.Model):
-    streetname=models.ForeignKey("Street",on_delete=models.PROTECT)
+    streetname=models.ForeignKey("Street",on_delete=models.PROTECT,null=True)
     housenumber=models.IntegerField()
     flatnumber=models.IntegerField()
 
 
-class Orderstatus(models.Model):
-    orderstatus=models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.orderstatus
 
-class Deliveryuser(models.Model):
-    deliveryfirstname=models.CharField(max_length=255)
-    deliverysurname=models.CharField(max_length=255,null=True)
-    telephonenumber=models.IntegerField()
-    def __str__(self):
-        return self.deliveryfirstname+self.deliverysurname
 
-class CustomerUser(models.Model):
-    customfirstname = models.CharField(max_length=255)
-    customsurname = models.CharField(max_length=255)
-    email = models.EmailField(max_length=70)
-    telephonenumber = models.IntegerField()
+
+
+
+class OrderStatuses(models.IntegerChoices):
+    NEW = 0, 'Low'
+    PROCESSED = 1, 'Normal'
+    FINISHED = 2, 'High'
 
 
 class Order(models.Model):
-    toaddress = models.ForeignKey("Address", on_delete=models.PROTECT)
-    departuredate=models.DateTimeField()
-    arrivaldate=models.DateTimeField()
-    orderstatus=models.ForeignKey("Orderstatus",on_delete=models.PROTECT)
-    deliveryuser=models.ForeignKey("Deliveryuser",on_delete=models.PROTECT)
-    customeruser=models.ForeignKey("Customeruser",on_delete=models.PROTECT)
+    to_address = models.ForeignKey("Address", on_delete=models.PROTECT)
+    order_status=models.IntegerField(default=OrderStatuses.NEW, choices=OrderStatuses.choices)
+    customer_user=models.ForeignKey(account_models.CustomUser,on_delete=models.PROTECT)
 
 
 class OrderBook(models.Model):

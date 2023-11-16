@@ -21,7 +21,11 @@
          {% endfor %}
 
     </div>
-    <div class="right_bar">
+    <div class="right_bar" action={% url 'book' %}>
+        <form class="search-content">
+            <input class="search" placeholder="Search" type="search" name="search">
+            <button class="searchBtn">Search</button>
+        </form>   
         {% block section %}
 
         {% endblock %}

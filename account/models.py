@@ -3,7 +3,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email=None, password=None, first_name=None, last_name=None, phone_number=None, date_of_birth=None):
+    def create_user(self, username, email=None, first_name=None, last_name=None, phone_number=None, date_of_birth=None, password=None):
         user = self.model(
             username=username,
             email=self.normalize_email(email),

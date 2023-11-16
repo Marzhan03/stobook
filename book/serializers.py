@@ -2,10 +2,10 @@ from rest_framework import serializers
 from . import models
 
 
-class CardTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Cardtype
-        fields = '__all__'
+# class CardTypeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Cardtype
+#         fields = '__all__'
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:

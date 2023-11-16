@@ -1,27 +1,41 @@
 {% extends 'base/base.html' %}
-
 {% load static %}
- {% block content %}
-    <h2>Оформление заказа</h2>
-    <div class="register_container">
-        <div class="register_inputs_list" style="line-break: auto;">
-            <form action="make-order" method="post">
-                <select id="cardTypes">
-                    <option selected disabled>Выберите тип карты</option>
-                </select></br>
+{% block content %}
+<link rel="stylesheet" type="text/css" href="./static/css/order.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-                <select id="cities">
+<form method="POST" action="/order" id="order_form">
+    {% csrf_token %}
+        <div class="order_container">
+            <div class="order_content">
+                <div class="order-title"><h2> Оформление заказа</h2></div>
+                <div class="order_box">
+                    <input class="order_input" type="text" name="last_name" placeholder="Фамилия" value="{{ request.user.last_name }}">
+                    <input class="order_input" type="text" name="first_name" placeholder="Имя" value="{{ request.user.first_name }}">
+                    <input class="order_input"  name="phone_number" placeholder="Номер телефона" value="{{ request.user.phone_number }}">
+                    <input class="order_input"  name="email" placeholder="email" value="{{ request.user.email }}">
+                    
+                <select class="order-option"  id="cities" >
                     <option selected disabled>Выберите город</option>
-                </select></br>
+                </select> 
 
-                <select id="streets">
-                    <option selected disabled>Выберите улицу</option>
-                </select></br>
-
-                <input type="buton" id="orderBtn" class="btn_cart" value="Оформить заказ">
-            </form>
+                <select class="order-option"  id="streets" name="streetname">
+                    <option selected disabled >Выберите улицу</option>
+                </select>
+                <input class="order_input"  name="housenumber" placeholder="Дом">
+                <input class="order_input"  name="flatnumber" placeholder="Квартира">
+                    
+                </div>
+                <div class="order_button">
+                    <a class="back_btn" href="/basket">Вернуться назад</a>
+                    
+                    <button class="back_btn" type="submsit" id="orderBtn">Оплатить</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <script src="/static/js/order.js"></script>
+</form>
+<script src="{% static '/js/order.js' %}"></script>
+
 {% endblock %}

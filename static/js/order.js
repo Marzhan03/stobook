@@ -1,25 +1,23 @@
 $(document).ready(function() {
-    let baseUrl = "http://localhost:8000";
+    // $.ajax({
+    //     url: "http://localhost:8000/card_types",
+    //     type: "GET",
+    //     success: function(response) {
+    //         let cardTypesSelect = $("#cardTypes");
+
+    //         for (let index = 0; index < response.length; index++) {
+    //             const element = response[index];
+
+    //             cardTypesSelect.append(`
+    //                 <option>${element.cardtypename}</option>
+    //             `)
+    //         }
+    //     }
+
+    // })
 
     $.ajax({
-        url: baseUrl + "/card_types",
-        type: "GET",
-        success: function(response) {
-            let cardTypesSelect = $("#cardTypes");
-
-            for (let index = 0; index < response.length; index++) {
-                const element = response[index];
-
-                cardTypesSelect.append(`
-                    <option>${element.cardtypename}</option>
-                `)
-            }
-        }
-
-    })
-
-    $.ajax({
-        url: baseUrl + "/cities",
+        url:"http://localhost:8000/cities",
         type: "GET",
         success: function(cities){
             let citiesSelect = $("#cities");
@@ -34,14 +32,14 @@ $(document).ready(function() {
     $("#cities").change(function(e){
         let city_id = $(this).find(":selected").val()
         $.ajax({
-            url: baseUrl + "/streets/" + city_id,
+            url:"http://localhost:8000/streets/" + city_id,
             type: "GET",
             success: function(streets){
                 let citiesSelect = $("#streets");
                 citiesSelect.html('')
                 streets.forEach((element) =>{
                     citiesSelect.append(`
-                        <option>${element.street}</option>
+                        <option value="${element.id}">${element.street}</option>
                         `)
                 })
             }
@@ -50,20 +48,27 @@ $(document).ready(function() {
     
 
     $("#orderBtn").click((event) => {
-        let cartData = localStorage.getItem('cartItems');
+        event.preventDefault();
 
-        $.ajax({
-            url: baseUrl + "/order",
-            type: "POST",
-            contentType: 'application/json',
-            data: JSON.stringify(cartData),
+        var formData = $('form#order_form').serializeArray();
 
-            success: function(response) {
-                debugger;
-            },
-            error: function(response) {
-                debugger;
-            }
-        });
+        let totalsum = JSON.parse(localStorage.getItem("totalsum"));
+        let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+
+        let totalsumInput = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'totalsum')
+            .val(totalsum);
+
+        let booksInput = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'books')
+            .val(JSON.stringify(cartItems));
+
+        $('form#order_form').append(totalsumInput).append(booksInput);
+
+        $('form#order_form').submit();
+
+        cartItems = localStorage.removeItem("cartItems")
     })
 })

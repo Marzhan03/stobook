@@ -42,3 +42,25 @@
     margin-top: 10px;
 
 }
+.search-content{
+    margin-bottom: 40px;
+    margin-left: 20px;
+}
+.searchBtn{
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 14px;
+    color:white;
+    background:#664229;
+    cursor: pointer;
+    padding: 12px;
+}
+.search{
+    background: #f5f5f5;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    width: 600px;
+}
