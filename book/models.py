@@ -77,14 +77,18 @@ class CustomerUser(models.Model):
 
 
 class Order(models.Model):
-    book=models.ForeignKey("Book",on_delete=models.PROTECT)
-    countofbook=models.IntegerField()
     toaddress = models.ForeignKey("Address", on_delete=models.PROTECT)
     departuredate=models.DateTimeField()
     arrivaldate=models.DateTimeField()
     orderstatus=models.ForeignKey("Orderstatus",on_delete=models.PROTECT)
-    deliveryusers=models.ForeignKey("Deliveryuser",on_delete=models.PROTECT)
-    customerusers=models.ForeignKey("Customeruser",on_delete=models.PROTECT)
+    deliveryuser=models.ForeignKey("Deliveryuser",on_delete=models.PROTECT)
+    customeruser=models.ForeignKey("Customeruser",on_delete=models.PROTECT)
+
+
+class OrderBook(models.Model):
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    book=models.ForeignKey("Book",on_delete=models.PROTECT)
+    bookCount=models.IntegerField()
 
 class Paymentstatus(models.Model):
     paystatus=models.CharField(max_length=255)

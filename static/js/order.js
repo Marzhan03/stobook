@@ -1,6 +1,8 @@
 $(document).ready(function() {
+    let baseUrl = "http://localhost:8000";
+
     $.ajax({
-        url: "http://localhost:8000/card_types",
+        url: baseUrl + "/card_types",
         type: "GET",
         success: function(response) {
             let cardTypesSelect = $("#cardTypes");
@@ -17,7 +19,7 @@ $(document).ready(function() {
     })
 
     $.ajax({
-        url:"http://localhost:8000/cities",
+        url: baseUrl + "/cities",
         type: "GET",
         success: function(cities){
             let citiesSelect = $("#cities");
@@ -32,7 +34,7 @@ $(document).ready(function() {
     $("#cities").change(function(e){
         let city_id = $(this).find(":selected").val()
         $.ajax({
-            url:"http://localhost:8000/streets/" + city_id,
+            url: baseUrl + "/streets/" + city_id,
             type: "GET",
             success: function(streets){
                 let citiesSelect = $("#streets");
@@ -48,6 +50,20 @@ $(document).ready(function() {
     
 
     $("#orderBtn").click((event) => {
-        debugger
+        let cartData = localStorage.getItem('cartItems');
+
+        $.ajax({
+            url: baseUrl + "/order",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify(cartData),
+
+            success: function(response) {
+                debugger;
+            },
+            error: function(response) {
+                debugger;
+            }
+        });
     })
 })

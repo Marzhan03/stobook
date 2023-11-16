@@ -4,20 +4,22 @@
  {% block content %}
     <h2>Оформление заказа</h2>
     <div class="register_container">
-        <div class="register_inputs_list">
-            <select id="cardTypes">
-                <option selected disabled>Выберите тип карты</option>
-            </select>
+        <div class="register_inputs_list" style="line-break: auto;">
+            <form action="make-order" method="post">
+                <select id="cardTypes">
+                    <option selected disabled>Выберите тип карты</option>
+                </select></br>
 
-            <select id="cities">
-                <option selected disabled>Выберите город</option>
-            </select>
+                <select id="cities">
+                    <option selected disabled>Выберите город</option>
+                </select></br>
 
-            <select id="streets">
-                <option selected disabled>Выберите улицу</option>
-            </select>
+                <select id="streets">
+                    <option selected disabled>Выберите улицу</option>
+                </select></br>
 
-            <button id="orderBtn" class="btn_cart">Оформить заказ</button>
+                <input type="buton" id="orderBtn" class="btn_cart" value="Оформить заказ">
+            </form>
         </div>
     </div>
 

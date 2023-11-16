@@ -72,7 +72,7 @@ def get_cities(request):
 
     return Response(serializer.data)
 
-@api_view(['GET',])
+@api_view(['GET'])
 def get_streets_by_city(request, city_id):
 
     # cities = City.objects.all()
@@ -81,3 +81,4 @@ def get_streets_by_city(request, city_id):
     serializer = StreetSerializer(streets, many=True)
 
     return Response(serializer.data)
+
