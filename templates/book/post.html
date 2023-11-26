@@ -25,7 +25,8 @@
         </div>
     </div>
         <div class="description"><p>{{ post.description|linebreaks }} </div>
-        <a class="post_btn" href="{{ book.get_absolute_url }}">Добавить в корзину</a>
+        {% comment %} <a class="post_btn" href="{{ book.get_absolute_url }}">Добавить в корзину</a> {% endcomment %}
+        <a href="#" class="post_btn" data-book-id="{{ book.id }}">Добавить в корзину</a>
 
 </div>
 

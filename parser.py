@@ -96,6 +96,7 @@ for genre in all_genre:
 
             description = each_book_soup.find("span", {'itemprop': 'description'})
             CLEANR = re.compile('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});')
+            
             description = cleanhtml(description.text)
             description_massiv=[description]
 

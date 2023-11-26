@@ -5,11 +5,11 @@ btn_cart.addEventListener("click",  function(event) {
     event.preventDefault();
 
     let bookID = event.target.attributes['data-book-id'].value
-    else {
+
         let book=event.target.closest('.box-book');
         let items = 
             {
-              
+                "id":bookID;
                 "name": book.querySelector('.booktitle'),
                 "count": 1
             };
@@ -22,5 +22,11 @@ btn_cart.addEventListener("click",  function(event) {
         bookSection.innerHTML += `
             <a href="#" class="remove_from_cart">Убрать из корзины</a>
         `
-    }
+    
 })
+let name = $.data(parsedItems, "name");
+let img = $.data(parsedItems, "img");
+let quantity = $.data(parsedItems, "quantity");
+let price = $.data(parsedItems, "price");
+
+console.log(name,price,img,quantity)

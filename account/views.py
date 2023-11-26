@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, logout
+from account.forms import RegisterForm, LoginForm
 
 from account.models import CustomUser
 
@@ -19,6 +20,7 @@ def login(request):
 
     return render(request, 'account/login.html')
 
+    
 
 def my_logout(request):
     logout(request)
@@ -35,16 +37,23 @@ def register(request):
         phone_number = request.POST.get("phone_number")
         date_of_birth = request.POST.get("date_of_birth")
 
-        CustomUser.objects.create_user(
-            username=username,
-            password=password,
-            first_name=first_name,
-            email=email,
-            last_name=last_name,
-            phone_number=phone_number,
-            date_of_birth=date_of_birth,
-        )
+        form = RegisterForm(request.POST)
 
-        return render(request, "account/login.html")
+        if form.is_valid():
+            CustomUser.objects.create_user(
+                username=username,
+                password=password,
+                first_name=first_name,
+                email=email,
+                last_name=last_name,
+                phone_number=phone_number,
+                date_of_birth=date_of_birth,
+            )
+
+            return render(request, "account/login.html")
+        else:
+            return render(request, "account/register.html", context={
+                'form': form, 'name': 'Marzhan'
+            })
 
     return render(request, "account/register.html")

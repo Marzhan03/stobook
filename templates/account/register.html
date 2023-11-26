@@ -1,19 +1,33 @@
-{% extends 'book/base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="/static/css/login.css">
 {% block content %}
     <link rel="stylesheet" type="text/css" href="/static/css/login.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
+    <script src="/static/js/register.js"></script>
+
     <div class="register_container">
-        <form method="POST" action="/account/register">
+        <form method="POST" id="registerForm" action="/account/register">
             {% csrf_token %}
+            {% for field, error in form.errors.items %}
+                {{ error }}
+            {% endfor %}
             <div class="register_inputs_list">
                 <input class="register_input" type="text" name="first_name" placeholder="Имя">
+                <div id="first_name-error" class="error"></div>
                 <input class="register_input" type="text" name="last_name" placeholder="Фамилия">
-                <input class="register_input" type="text" name="phone_number" placeholder="Телефон">
+                <div id="last_name-error" class="error"></div>
+                <input class="register_input phone_number" type="text" name="phone_number" placeholder="Телефон">
+                <div id="phone_number-error" class="error"></div>
                 <input class="register_input" type="date" name="date_of_birth">
+                <div id="date_of_birth-error" class="error"></div>
                 <input class="register_input" type="email" name="email" placeholder="Email">
+                <div id="email-error" class="error"></div>
                 <input class="register_input" type="text" name="username" placeholder="Логин">
+                <div id="username-error" class="error"></div>
                 <input class="register_input" type="password" name="password" placeholder="Пароль">
+                <div id="password-error" class="error"></div>
                 <input class="register_btn" type="submit" value="Зарегистрироваться">
 
             </div>
