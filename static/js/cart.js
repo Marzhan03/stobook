@@ -24,7 +24,7 @@ function loadCart () {
                         <a href="#" class="items__control" id="plus-btn" data-id="${item.id}">+</a>
                     </div>
                     <div id="item_sum_${item.id}" class="sum">${sum}</h4></div>
-                    <input class="delete-all" id="delete-item" data-ind="${index}" data_book_id="${ item.id }" type="button" value="Очистить"></input>
+                    <input class="delete-all" id="delete-item" data-ind="${index}" data_book_id="${ item.id }" type="button" value="Удалить"></input>
                 </div>
                 `
 
@@ -48,12 +48,9 @@ function loadCart () {
     }
  
     $(".basket-items-container").on('click', '#delete-item', delItem);
-
-    // $('#delete-item').on('click',delItem);
     $(".basket-title").on('click','#delete-all-items',delAllItem);
     $(".items-counter-wrapper").on('click','#minus-btn',minusBtn);
     $(".items-counter-wrapper").on('click','#plus-btn', function(event) {
-
         event.preventDefault();
         let id =parseInt($(this).attr('data-id'));
         cartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -72,7 +69,6 @@ function loadCart () {
                 allSum+= parseInt(item.price)
                 totalsum.allsum=allSum
                 saveItem("totalsum",totalsum)
-                
                 current_item_all_sum.text(allSum)
 
             }
@@ -82,6 +78,7 @@ function loadCart () {
 
 
 function delItem(){
+    event.preventDefault();
     let id =parseInt($(this).attr('data-id'));
     let data_book_id=parseInt($(this).attr('data_book_id'));
     cartItems.splice(id,1);
@@ -106,6 +103,7 @@ function delItem(){
 }
 
 function delAllItem(){
+    event.preventDefault();
     cartItems=[]
     saveItem("cartItems",cartItems)
     $('.basket-item').remove(); 
@@ -129,11 +127,9 @@ function minusBtn(event) {
                 item.quantity-=1
                 saveItem("cartItems",cartItems) 
                 item_sum=item.quantity*item.price;
-                
                 let current_item_div = $(`#cart_item__div_${item.id}`)
                 let current_item_sum = $(`#item_sum_${item.id}`)
                 let current_item_all_sum = $(`#all_items`)
-                
                 current_item_div.text(item.quantity)  
                 current_item_sum.text(item_sum) 
                 console.log(current_item_all_sum,"dsfd",sumItems)
@@ -143,7 +139,7 @@ function minusBtn(event) {
                 totalsum.allsum=allSum
                 saveItem("totalsum",totalsum)
                 
-                current_item_all_sum.text(allSum)
+                // current_item_all_sum.text(allSum)
             }    
         }
     });

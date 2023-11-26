@@ -2,7 +2,6 @@
     max-width:600px;
     padding: 0px 30px;
     margin: 200px auto;
-
     display: flex;
     justify-content: center;
     width: 80%;
@@ -25,7 +24,7 @@
     margin-bottom: 20px;
 }
 .order-option{
-    margin-bottom: 200px;
+    margin-bottom: 20px;
     justify-content: center;
     width: 80%;
     box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);

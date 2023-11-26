@@ -1,7 +1,4 @@
 @import './reset.css';
-@import './media.css';
-@import './main.js';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root{
 	--max-width:1450px;
@@ -28,6 +25,7 @@ body{
 	justify-content: space-between; /* элементы в разные стороны*/
 	align-items: flex-end; /*выравнивание концами*/
 }
+
 .nav-list{
 	display: flex;
 	align-items: flex-end;
@@ -51,6 +49,7 @@ body{
 .nav-link:hover{
 	color: #06038D;
 }
+
 .cart{
 	max-width: 35px;
 	align-items: center;
@@ -77,6 +76,7 @@ body{
 	padding: 180px 450px;
 	color:#FFF ;
 }
+
 .header-content p{
 	line-height: 2;
 }
@@ -98,8 +98,7 @@ body{
     margin-right:20px;
     width:430px;
     height:300px;
-    display:inline-block;
-   
+    display:inline-block;   
 }
 
 .box{
@@ -107,6 +106,7 @@ body{
     text-align: center;
     border:var(--border);
 }
+
 .box:hover{
 	box-shadow: 2px 2px 2px 2px;
 }
@@ -120,7 +120,6 @@ body{
     width:20px;
     height:30px;
     color: black;
-
     padding:10px 0;
 }
 
@@ -161,6 +160,3 @@ body{
     color:#fff;
 }
 
-.box-content{
-
-}

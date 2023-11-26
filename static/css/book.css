@@ -1,5 +1,5 @@
 @import './main.css';
-
+@import './index.css';
 .rightbar_content{
     width: 300px;
     display:grid;
@@ -10,16 +10,12 @@
     height: 450px;
     text-align: center;
     box-shadow: 2px 2px 2px 2px;
-
-
 }
-
 
 .rightbar_content img{
     width: 150px;
     height:200px;
 }
-
 
 .btn_post{
     margin-top: 10px;

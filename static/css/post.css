@@ -34,11 +34,7 @@
     background:#664229;
     cursor: pointer;
     padding: 10px;
-    right:-20px;
-    border-radius:10%;
-    justify-content:end;
-    align-items:flex-end;
-
+    text-align: right;
 }
 .container{
     max-width:1200px ;

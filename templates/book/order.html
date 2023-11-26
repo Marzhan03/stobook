@@ -5,40 +5,34 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<form method="POST">
-<div class="order_container">
-    <div class="order_content">
-        <div class="order-title"><h2> Оформление заказа</h2></div>
-        <div class="order_box">
-            <input class="order_input" type="text" name="username" placeholder="Фамилия">
-            <input class="order_input" type="password" name="password" placeholder="Имя">
-            <input class="order_input" type="text" name="username" placeholder="Фамилия">
-            <input class="order_input" type="password" name="password" placeholder="Имя">
-            <select  class="order-option" id="city-dropdown">
-                {% for city in cities %}
-                    <option value="{{ city.id }}">{{ city.city }}</option>
-                {% endfor %}
-            </select>
-           <select class="order-option"  id="cities">
-                <option selected disabled>Выберите город</option>
-                {% comment %} {% for city in cities %}
-                <option selected disabled>{{ city.city }}</option>
-                {% endfor %} {% endcomment %}
-            </select> 
+<form method="POST" action="/order" id="order_form">
+    {% csrf_token %}
+        <div class="order_container">
+            <div class="order_content">
+                <div class="order-title"><h2> Оформление заказа</h2></div>
+                <div class="order_box">
+                    <input class="order_input" type="text" name="last_name" placeholder="Фамилия" value="{{ request.user.last_name }}">
+                    <input class="order_input" type="text" name="first_name" placeholder="Имя" value="{{ request.user.first_name }}">
+                    <input class="order_input"  name="phone_number" placeholder="Номер телефона" value="{{ request.user.phone_number }}">
+                    <input class="order_input"  name="email" placeholder="email" value="{{ request.user.email }}">
+                    
+                    <select class="order-option"  id="cities" >
+                        <option selected disabled>Выберите город</option>
+                    </select> 
 
-        <select class="order-option"  id="streets">
-                <option selected disabled>Выберите улицу</option>
-            </select>
-             {% comment %} <select id="street-dropdown">
-                <option>Select a city first</option>
-            </select> {% endcomment %} 
+                    <select class="order-option"  id="streets" name="streetname">
+                        <option selected disabled >Выберите улицу</option>
+                    </select>
+                    <input class="order_input"  name="housenumber" placeholder="Дом">
+                    <input class="order_input"  name="flatnumber" placeholder="Квартира">
+                    
+                </div>
+                <div class="order_button">
+                    <a class="back_btn" href="/basket">Вернуться назад</a>
+                    <button class="back_btn" type="submsit" id="orderBtn">Оплатить</button>
+                </div>
+            </div>
         </div>
-        <div class="order_button">
-            <a class="back_btn" href="/basket">Вернуться назад</a>
-            <a class="back_btn" href="#">Оплатить</a>
-        </div>
-    </div>
-</div>
 
 </form>
 <script src="{% static '/js/order.js' %}"></script>

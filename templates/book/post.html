@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
-
 {% block content %}
 <link rel="stylesheet" type="text/css" href="/static/css/post.css">
-
 <div class="container">
     <div class="post-content">
         <div class="book-img-content">
@@ -25,9 +23,7 @@
         </div>
     </div>
         <div class="description"><p>{{ post.description|linebreaks }} </div>
-        {% comment %} <a class="post_btn" href="{{ book.get_absolute_url }}">Добавить в корзину</a> {% endcomment %}
-        <a href="#" class="post_btn" data-book-id="{{ book.id }}">Добавить в корзину</a>
-
+        <a href="{% url 'book' %}" class="post_btn" data-book-id="{{ book.id }}">Вернуться назад</a>
 </div>
 
 {% endblock %}
