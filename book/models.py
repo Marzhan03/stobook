@@ -57,15 +57,6 @@ class Address(models.Model):
     flatnumber=models.IntegerField()
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
->>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be
 class OrderStatuses(models.IntegerChoices):
     NEW = 0, 'Low'
     PROCESSED = 1, 'Normal'
@@ -75,23 +66,16 @@ class OrderStatuses(models.IntegerChoices):
 class Order(models.Model):
     to_address = models.ForeignKey("Address", on_delete=models.PROTECT)
     order_status=models.IntegerField(default=OrderStatuses.NEW, choices=OrderStatuses.choices)
-<<<<<<< HEAD
     customer_user=models.ForeignKey(account_models.CustomUser,on_delete=models.PROTECT, null=True)
     is_active=models.BooleanField(default=True)
-=======
-    customer_user=models.ForeignKey(account_models.CustomUser,on_delete=models.PROTECT)
->>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be
 
 
 class OrderBook(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
     book=models.ForeignKey("Book",on_delete=models.PROTECT)
     bookCount=models.IntegerField()
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be
 
 
 

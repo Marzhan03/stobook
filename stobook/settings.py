@@ -44,13 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'corsheaders',
-=======
-    
-    # осы жерде rest_framework-ті көрсетеміз
-    'rest_framework',
->>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be
     'book',
     'account',
     'base',
@@ -168,3 +162,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]
+
+
+
+#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

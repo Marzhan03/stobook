@@ -13,13 +13,9 @@ urlpatterns = [
     path('order',order,name='order'),
     path('cities', get_cities),
     path('streets/<int:city_id>', get_streets_by_city),
-<<<<<<< HEAD
     path('payment/',payment,name='payment'),
     path('orders/payments/new',newpayment),
     path('get_user_orders', get_user_orders),
-=======
-
->>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be
     
 ]
 

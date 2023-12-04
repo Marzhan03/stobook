@@ -1,8 +1,8 @@
 @import './main.css';
 @import './index.css';
+
 .rightbar_content{
     width: 300px;
-    display:grid;
     display:inline-flex;
     margin-bottom: 10px;
     margin-right: 10px;
@@ -36,5 +36,4 @@
     background:#664229;
     cursor: pointer;
     padding: 10px
-
 }

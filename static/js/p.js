@@ -2,10 +2,6 @@
 $(document).ready(function() {
     $(".btn_cart").click(function(event) {
         event.preventDefault();
-<<<<<<< HEAD
-
-=======
->>>>>>> 5bd30a4744b5241c999b6d5097dac7d96467045a
         let bookID = event.target.attributes['data-book-id'].value
         let bookContainer = $(".book-section-" + bookID);
         let bookName = bookContainer.find(".booktitle").text()
