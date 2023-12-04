@@ -1,0 +1,22 @@
+{
+    "genres": [
+        {
+            "genrename": "Фантастика"
+        },
+        {
+            "genrename": "Драма"
+        },
+        {
+            "genrename": "Детектив"
+        },
+        {
+            "genrename": "Роман"
+        },
+        {
+            "genrename": "Научпоп"
+        },
+        {
+            "genrename": "Классика"
+        }
+    ]
+}

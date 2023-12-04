@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-l@_y%5l18qrxu!%@^j+)b7zdzb5s2!nf8g9=9%m^6yjt$x+q9+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -44,11 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'corsheaders',
+=======
+    
+    # осы жерде rest_framework-ті көрсетеміз
+    'rest_framework',
+>>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be
     'book',
     'account',
     'base',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +94,7 @@ WSGI_APPLICATION = 'stobook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':env('DATABASE_NAME'),
+        'NAME': "stobook",
         'USER':env('DATABASE_USER'),
         'PASSWORD':env('DATABASE_PASS'),
         'HOST':env('DATABASE_HOST'),

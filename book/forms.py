@@ -1,5 +1,6 @@
 from django import forms
 from . import models
+<<<<<<< HEAD
 dj
 class OrderForm(forms.ModelForm):
     email=forms.EmailField()
@@ -55,3 +56,14 @@ class OrderForm(forms.ModelForm):
         model = models.Order
         fields =['last_name','first_name' ,'phone_number','email' ,'housenumber' ,'flatnumber' ,'streetname']
 
+=======
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = models.Order
+        fields ='__all__'
+
+
+
+        
+>>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be

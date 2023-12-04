@@ -52,8 +52,13 @@ $(document).ready(function() {
         $('form#order_form').append(totalsumInput).append(booksInput);
 
         $('form#order_form').submit();
+<<<<<<< HEAD
         console.log(booksInput)
         // cartItems = localStorage.removeItem("cartItems")
         // window.location.href = 'payment/';
+=======
+
+        cartItems = localStorage.removeItem("cartItems")
+>>>>>>> 049dd5a9771965afa8e66fc8d103aee34b35e5be
     })
 })
