@@ -24,6 +24,7 @@
 								<div class="info">
 									<h5>Цена:{{book.book.cost}} x {{book.bookCount}}</h5>
 								</div>
+								<input type="hidden" value="{{book.order_id}}" id="orderId">
 							</div>	
 						</div>
 					{% endif %}
@@ -40,26 +41,32 @@
 				
 		<div class="payment-info"> 
 			<h2> Оплата заказа</h2>
+			<select id="type" class="order-option"  id="cities" >
+				<option selected disabled>Тип карты</option>
+				{% for cardtype in cardType  %}
+				 	<option value="{{cardtype.id}}">{{cardtype.cardtypename}}</option>
+				{% endfor %}
+			</select> 
 			<div>
 				<h4>Номер карты</h4>
-				<input class="payment-input-number" placeholder="Номер карты">
+				<input id="numberCard" class="payment-input-number" placeholder="Номер карты">
 			</div>
 			<div class="data-cvv">
 				<div>
 					<h4>Срок действие</h4>
 					<div class="data">
-						<input class="payment-input" placeholder="MM">
+						<input id="month" class="payment-input" placeholder="MM">
 						/
-						<input class="payment-input"  placeholder="YY">
+						<input id="year" class="payment-input"  placeholder="YY">
 					</div>
 				</div>
 				<div>
 					<h4>CCV</h4>
-					<input class="payment-input" placeholder="000">
+					<input id="ccv" class="payment-input" placeholder="000">
 				</div>
 			</div>
 			<div class="pay-btn">
-				<button id="openBtn" class="back_btn" type="submsit" id="orderBtn">Оплатить</button>
+				<button id="openBtn" class="back_btn" type="submit">Оплатить</button>
 			</div>
 		</div>
 		
@@ -69,8 +76,9 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <p>Ваш заказ успешно оформлен</p>
-		<button id="mainBtn" class="back_btn" type="submsit" id="orderBtn">Вернуться на главную</button>
+		<button id="mainBtn" class="back_btn" type="submsit" >Вернуться на главную</button>
     </div>
 </div>
+
 <script src="{% static '/js/payment.js' %}"></script>
 {% endblock %}

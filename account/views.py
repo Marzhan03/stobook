@@ -2,26 +2,31 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, logout
-from account.forms import RegisterForm, LoginForm
+from account import forms
 
 from account.models import CustomUser
 
 
 def login(request):
     form=forms.LoginForm()
+    msg = []
     if request.method == 'POST':
-        form=forms.LoginForm(request.POST)
+        form=forms.LoginForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(username=username, password=password)
             if user is not None:
-                auth.login(request, user)
-
-                return redirect('/')
+                if user.is_active:
+                    auth.login(request, user)
+                    msg.append("login successful")
+                    return redirect('home')
+                else:
+                    msg.append("disabled account")
+            else:
+                msg.append("invalid login")
 
     return render(request, 'account/login.html')
-
     
 
 def my_logout(request):
@@ -30,19 +35,15 @@ def my_logout(request):
 
 
 def register(request):
-    form = RegisterForm(request.POST)
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-
+    form = forms.CustomUserForm()
+    if request.method == 'POST':
+        print('ddd', request.POST)
+        form = forms.CustomUserForm(request.POST)
         if form.is_valid():
-            register=form.save(commi=False)
-            register.save()
-            return render(request, "account/login.html")  # Перенаправление на страницу успешной регистрации
-
+            print("fdgdf")
+            user = form.save(commit=False)  
+            user.save()
+            return redirect('login')
         else:
-            form = RegisterForm()
-            return render(request, "account/register.html", context={
-                'form': form, 'name': 'Marzhan'
-            })
-
-    return render(request, "account/register.html")
+            print("xfdds")
+    return render(request, "account/register.html", { 'form': form})

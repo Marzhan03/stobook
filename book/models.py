@@ -75,25 +75,22 @@ class OrderBook(models.Model):
     book=models.ForeignKey("Book",on_delete=models.PROTECT)
     bookCount=models.IntegerField()
 
-class Paymentstatus(models.Model):
-    paystatus=models.CharField(max_length=255)
 
-class Cardholder(models.Model):
-    cardholdername=models.CharField(max_length=255)
+
+
 
 class Cardtype(models.Model):
     cardtypename=models.CharField(max_length=255)
 
 
 class UserCard(models.Model):
-    cardholder=models.ForeignKey("Cardholder",on_delete=models.PROTECT)
     cardnumber=models.IntegerField()
-    dateissue=models.DateTimeField()
-    cardyear=models.IntegerField()
+    dateissue=models.CharField("Дата истечения", max_length=4)
     cvc=models.IntegerField()
     cardtype=models.ForeignKey("Cardtype",on_delete=models.PROTECT)
 
-class Card(models.Model):
+class Payment(models.Model):
     order=models.ForeignKey("Order",on_delete=models.PROTECT)
-    paymentstatus=models.ForeignKey("Paymentstatus",on_delete=models.PROTECT)
+    date=models.DateTimeField(verbose_name="Дата и время оплата", auto_now_add=True)
     card=models.ForeignKey("UserCard",on_delete=models.PROTECT)
+    summa=models.FloatField(verbose_name="Сумма")

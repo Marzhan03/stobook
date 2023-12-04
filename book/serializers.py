@@ -56,4 +56,14 @@ class OrderSerializer(serializers.ModelSerializer):
         model = models.Order
         fields = '__all__'
 
+class CardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserCard
+        fields = '__all__'
 
+
+class PaymentSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = models.Payment
+        fields = '__all__'

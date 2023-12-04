@@ -35,6 +35,22 @@ class OrderForm(forms.ModelForm):
             )
         ]
     )
+    housenumber = models.CharField(
+        validators=[
+            RegexValidator(
+                message="Неправильно указанный номер дома"
+                code="invalid_home_number"
+            )
+        ]
+    )
+    flatnumber = models.CharField(
+        validators=[
+            RegexValidator(
+                message="Неправильно указанный номер дома"
+                code="invalid_flat_number"
+            )
+        ]
+    )
     class Meta:
         model = models.Order
         fields =['last_name','first_name' ,'phone_number','email' ,'housenumber' ,'flatnumber' ,'streetname']

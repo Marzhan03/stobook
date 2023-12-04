@@ -28,8 +28,7 @@ admin.site.register(Address)
 
 admin.site.register(Order)
 admin.site.register(OrderBook)
-admin.site.register(Cardholder)
+
 admin.site.register(Cardtype)
-admin.site.register(Card)
-admin.site.register(Paymentstatus)
+admin.site.register(Payment)
 admin.site.register(UserCard)

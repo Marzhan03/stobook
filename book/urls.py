@@ -14,6 +14,7 @@ urlpatterns = [
     path('cities', get_cities),
     path('streets/<int:city_id>', get_streets_by_city),
     path('payment/',payment,name='payment'),
+    path('orders/payments/new',newpayment),
     path('get_user_orders', get_user_orders),
     
 ]

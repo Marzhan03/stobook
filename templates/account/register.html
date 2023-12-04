@@ -9,10 +9,17 @@
 
     <div class="register_container">
         <form method="POST" id="registerForm" action="/account/register">
-            {% csrf_token %}
-            {% for field, error in form.errors.items %}
-                {{ error }}
+            {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Ошибка в форме:</strong>
+            <ul>
+            {% for field, errors in form.errors.items %}
+                <li>{{ field }}: {{ errors|join:", " }}</li>
             {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% csrf_token %}
             <div class="register_inputs_list">
                 <input class="register_input" type="text" name="first_name" placeholder="Имя">
                 <div id="first_name-error" class="error"></div>

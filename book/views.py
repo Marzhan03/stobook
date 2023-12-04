@@ -2,10 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 import json
-
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import CitySerializer, StreetSerializer, OrderSerializer
+from .serializers import CitySerializer, StreetSerializer, OrderSerializer, PaymentSerializer
 
 # Create your views here.
 def main(request):
@@ -81,7 +81,6 @@ def order(request):
         streetname=request.POST.get("streetname")
         address=Address.objects.filter(streetname=Street.objects.get(pk=streetname),flatnumber=flatnumber,housenumber=housenumber)
         books = json.loads(request.POST.get('books'))
-        # totalsSum = json.loads(request.POST.get('totalsum'))
         if address.exists():
             address=address.first()
         else:
@@ -105,14 +104,76 @@ def order(request):
                     bookCount = book.get('quantity'),
                 )
                 order_book.save()
+            return redirect('payment')
     return render(request,'book/order.html')
 
+
+@api_view(['POST',])
+def newpayment(request):
+    serializer = PaymentSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)  # Возвращаем созданный объект и статус "Создано"
+    if request.method == 'POST':
+        card_number = request.POST.get('cardnumber')
+        date_issue = request.POST.get('dateissue')
+        cvc = request.POST.get('cvc')
+        card_type = request.POST.get('cardtype')
+
+        # Создаем новую карту пользователя
+        user_card = UserCard.objects.create(
+            cardnumber=card_number,
+            dateissue=date_issue,
+            cvc=cvc,
+            cardtype_id=card_type
+        )
+        user_card.save()
+    if request.method == 'POST':
+        latest_object = UserCard.objects.latest('id')
+        latest_object_id = latest_object.id
+        order_id = request.POST.get('order') 
+        summa = request.POST.get('summa')
+        card_id = latest_object_id   # Предполагается, что передается ID карты
+
+        # Создаем новый платеж
+        payment = Payment.objects.create(
+            order_id=order_id,
+            summa=summa,
+            card_id=card_id  # Передаем ID карты вместо всего объекта
+        )
+        payment.save()
+    
+
 def payment(request):
+    cardType=Cardtype.objects.all()
     orderBook=OrderBook.objects.all()
     order = Order.objects.latest('id')  
     orderId = order.id 
     address=Address.objects.filter(id=orderId)
-    return render(request, 'book/payment.html',{"orderBook":orderBook,"order": order,"orderId":orderId,"address":address})    
+   
+    return render(request, 'book/payment.html',{"cardType":cardType,"orderBook":orderBook,"order": order,"orderId":orderId,"address":address})    
+
+
+def create_user_card(request):
+    if request.method == 'POST':
+        card_number = request.POST.get('cardnumber')
+        date_issue = request.POST.get('dateissue')
+        cvc = request.POST.get('cvc')
+        card_type = request.POST.get('cardtype')
+
+        # Создаем новую карту пользователя
+        user_card = UserCard.objects.create(
+            cardnumber=card_number,
+            dateissue=date_issue,
+            cvc=cvc,
+            cardtype_id=card_type
+        )
+
+        # Возвращаем JSON-ответ с информацией о созданной карте пользователя
+        return JsonResponse({'user_card_id': user_card.id})
+
+    return JsonResponse({'error': 'Invalid request method'})    
 
 @api_view(['GET',])
 def get_user_orders(request):
